@@ -44,7 +44,7 @@ const Account = () => {
             <h3 className="text-lg font-medium capitalize">My WishList</h3>
           </div>
         </div>
-        <div className="basis-[50%] px-14 py-8 border border-colors-text-2">
+        <div className="basis-[50%] px-16 py-8 border border-colors-text-2">
           <h3 className="capitalize font-medium text-2xl text-colors-secondary-3">
             Edit your Profile
           </h3>

@@ -4,7 +4,15 @@ import GridItem from "./GridItem";
 import HeadingLabel from "./HeadingLabel";
 import SectionHeader from "./SectionHeader";
 import JoyStick from "../assets/joy-stick.png";
+import { useQuery } from "@tanstack/react-query";
+import { getProducts } from "../api/api";
 const AvailableProducts = () => {
+  const { data: availableProducts = [] } = useQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
+  });
+  console.log("available Products:", availableProducts);
+
   return (
     <section>
       <HeadingLabel
@@ -16,12 +24,9 @@ const AvailableProducts = () => {
         buttons={<Button children="view all" color="red" size="lg" />}
       />
       <GridLayout>
-        <GridItem badge="" imageUrl={JoyStick} />
-        <GridItem badge="" imageUrl={JoyStick} />
-        <GridItem badge="" imageUrl={JoyStick} />
-        <GridItem badge="" imageUrl={JoyStick} />
-        <GridItem badge="" imageUrl={JoyStick} />
-        <GridItem badge="" imageUrl={JoyStick} />
+        {availableProducts?.map((product) => (
+          <GridItem key={product.id} badge="" {...product} />
+        ))}
       </GridLayout>
     </section>
   );

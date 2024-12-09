@@ -5,26 +5,29 @@ import GridItem from "../components/GridItem";
 import JoyStick from "../assets/joy-stick.png";
 import RGBKeyboard from "../assets/rgb-keyboard.png";
 import Button from "../components/Button";
+import { useQuery } from "@tanstack/react-query";
+import { getProducts } from "../api/api";
 
 const FlashSale = () => {
+  const { data: availableProducts = [] } = useQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
+  });
   return (
-    <section className="mt-14 border-b-colors-secondary-2 border-b-2 pb-12">
+    <section className="pb-12 border-b-2 mt-14 border-b-colors-secondary-2">
       <HeadingLabel Children="Today's" />
       <div className="flex flex-col">
         <CountDown className="justify-between" />
         <GridLayout>
-          <GridItem imageUrl={JoyStick} />
-          <GridItem imageUrl={RGBKeyboard} />
-          <GridItem imageUrl={RGBKeyboard} />
-          <GridItem imageUrl={JoyStick} />
-          <GridItem imageUrl={JoyStick} />
-          <GridItem imageUrl={JoyStick} />
+          {availableProducts?.map((product) => (
+            <GridItem key={product.id} badge="" {...product} />
+          ))}
         </GridLayout>
         <Button
           size="lg"
           color="red"
           children="view all products"
-          className="self-center rounded-t-none mt-8"
+          className="self-center mt-8 rounded-t-none"
         />
       </div>
     </section>

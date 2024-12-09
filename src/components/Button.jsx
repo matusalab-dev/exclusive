@@ -1,5 +1,6 @@
 import { Children } from "react";
 import { cn } from "../utils/utils";
+import { Link } from "react-router";
 
 const sizes = {
   md: "px-4 py-2 rounded-b-sm text-base",
@@ -13,14 +14,25 @@ const colors = {
   green: "bg-colors-green-1 text-colors-primary-1",
 };
 
-function Button({ color, size, children, className }) {
+function Button({ as = "button", to = "/", color, size, children, className }) {
   let colorVariants = colors[color];
   let sizeVariants = sizes[size];
   console.log(colorVariants);
-
+  if (as === "Link" && to) {
+    return (
+      <Link
+        className={`capitalize  ${colorVariants} ${sizeVariants} ${cn(
+          "",
+          className
+        )} `}
+        to={to}
+      >
+        {children}
+      </Link>
+    );
+  }
   return (
     <button
-      type="button"
       className={`capitalize  ${colorVariants} ${sizeVariants} ${cn(
         "",
         className

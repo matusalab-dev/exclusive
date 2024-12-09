@@ -6,25 +6,25 @@ import SlideArrowIcon from "../../assets/icons/slide-arrow";
 
 const HeroSection = () => {
   return (
-    <section className="mt-20 flex items-start ">
+    <section className="flex items-start mt-20 ">
       <aside>
         <ul className="flex text-base flex-col gap-4 after:left-[20%] after:max-h-[405px] after:top-[22.3%] after:content-[''] after:h-full after:w-1 after:absolute after:border-r after:border-r-colors-text-3 pr-6">
           <li className="">
             <Link
               to="/"
-              className="capitalize flex gap-2 items-center justify-between  w-52"
+              className="flex items-center justify-between gap-2 capitalize w-52"
             >
               Women's Fashion
-              <ArrowIcon strokeColor="#000000" className="size-6 -rotate-90 " />
+              <ArrowIcon strokeColor="#000000" className="-rotate-90 size-6 " />
             </Link>
           </li>
           <li className="">
             <Link
               to="/"
-              className="capitalize flex gap-2 justify-between items-center w-52"
+              className="flex items-center justify-between gap-2 capitalize w-52"
             >
               Men's Fashion
-              <ArrowIcon strokeColor="#000000" className="size-6 -rotate-90" />
+              <ArrowIcon strokeColor="#000000" className="-rotate-90 size-6" />
             </Link>
           </li>
           <li>
@@ -64,11 +64,11 @@ const HeroSection = () => {
           </li>
         </ul>
       </aside>
-      <div className="bg-colors-text-3 ml-12 mt-0 pt-10 px-16 pb-3 flex-1 flex flex-col items-center gap-4  text-colors-primary-1">
-        <div className="flex w-full gap-1 items-stretch justify-between">
+      <div className="flex flex-col items-center flex-1 gap-4 px-16 pt-10 pb-3 mt-0 ml-12 bg-colors-text-3 text-colors-primary-1">
+        <div className="flex items-stretch justify-between w-full gap-1">
           <div className=" grid gap-y-0 gap-x-2 justify-start items-start grid-rows-[min] grid-cols-[48px,60px_repeat(2,_1fr)]">
-            <AppleLogo className="row-start-1 col-start-1 col-span-1" />
-            <p className=" col-start-2 col-span-3 justify-self-start">
+            <AppleLogo className="self-center col-span-1 col-start-1 row-span-1 row-start-1" />
+            <p className="self-center col-span-2 col-start-2 row-span-1 row-start-1 justify-self-start">
               iPhone 14 Series
             </p>
             <h1 className=" font-semibold leading-[1.4] col-start-1 col-span-4 row-start-2 row-span-1  text-5xl font-inter">
@@ -91,12 +91,12 @@ const HeroSection = () => {
             // height={352}
           />
         </div>
-        <div className="flex gap-4 items-center">
-          <button className="size-3 rounded-full bg-colors-secondary-3"></button>
-          <button className="size-3 rounded-full bg-colors-primary-2"></button>
-          <button className="size-3 rounded-full bg-colors-primary-2"></button>
-          <button className="size-3 rounded-full bg-colors-primary-2"></button>
-          <button className="size-3 rounded-full bg-colors-primary-2"></button>
+        <div className="flex items-center gap-4">
+          <button className="rounded-full size-3 bg-colors-secondary-3"></button>
+          <button className="rounded-full size-3 bg-colors-primary-2"></button>
+          <button className="rounded-full size-3 bg-colors-primary-2"></button>
+          <button className="rounded-full size-3 bg-colors-primary-2"></button>
+          <button className="rounded-full size-3 bg-colors-primary-2"></button>
         </div>
       </div>
     </section>

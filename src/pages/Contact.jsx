@@ -1,5 +1,5 @@
 const Contact = () => {
-  return <div>Contact</div>;
+  return <div className="py-20 text-center">Contact</div>;
 };
 
 export default Contact;

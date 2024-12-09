@@ -2,12 +2,18 @@ import Button from "../components/Button";
 
 const NotFound = () => {
   return (
-    <section className="flex mt-24 text-center flex-col gap-4 justify-center items-center">
+    <section className="flex flex-col items-center justify-center gap-4 mt-24 text-center">
       <div className="flex flex-col gap-8">
-        <h1 className="text-7xl font-bold">404 Not Found</h1>
+        <h1 className="font-bold text-7xl">404 Not Found</h1>
         <p>Your visited page not found. You may go home page.</p>
       </div>
-      <Button size="lg" color="red" children="back to home page" />
+      <Button
+        as="Link"
+        to="/"
+        size="lg"
+        color="red"
+        children="back to home page"
+      />
     </section>
   );
 };

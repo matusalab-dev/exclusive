@@ -1,15 +1,25 @@
+import { Link } from "react-router";
 import EyeIcon from "../assets/icons/eye-icon";
 import HeartIcon from "../assets/icons/heart-icon";
 import StarIcon from "../assets/icons/StarIcon";
 import { cn } from "../utils/utils";
 import Button from "./Button";
-const GridItem = ({
-  badge = "-40%",
-  imageUrl,
-  className,
-  styleButton,
-  colorVariants,
-}) => {
+const GridItem = (product) => {
+  const {
+    badge = "-40%",
+    id,
+    image,
+    title,
+    price,
+    rating,
+    className,
+    styleButton,
+    colorVariants,
+  } = product;
+  // const { rate, count } = rating;
+  // console.log("rate: " + rate + " count: " + count);
+  console.log("rate: " + rating?.rate);
+
   return (
     <div className="space-y-4">
       <div className="flex flex-col items-center">
@@ -29,18 +39,18 @@ const GridItem = ({
             {badge}
           </p>
           <img
-            src={imageUrl}
-            width="178px"
-            height="150px"
-            alt="joy stick"
-            className="mx-auto"
+            src={image}
+            width="158px"
+            height="120px"
+            alt={title}
+            className="object-cover w-full h-full"
           />
           <div className="flex flex-col gap-2 mb-auto">
-            <button className="bg-colors-bg size-10 flex items-center justify-center rounded-full">
+            <button className="flex items-center justify-center rounded-full bg-colors-bg size-10">
               {" "}
               <HeartIcon />
             </button>
-            <button className="bg-colors-bg size-10 flex items-center justify-center rounded-full">
+            <button className="flex items-center justify-center rounded-full bg-colors-bg size-10">
               {" "}
               <EyeIcon />
             </button>
@@ -51,34 +61,40 @@ const GridItem = ({
           size="xl"
           children="add to cart"
           className={`${cn(
-            "capitalize rounded-b-sm w-full text-base font-medium",
+            "w-full text-base font-medium capitalize rounded-b-sm",
             styleButton
           )}`}
         />
       </div>
-      <div className="flex flex-col gap-1">
-        <h4 className="font-medium uppercase">HAVIT HV-G92 Gamepad</h4>
-        <div className="font-poppins font-medium text-base flex gap-2">
-          <p className="text-colors-secondary-3">$120</p>
-          <p className=" line-through  text-colors-text-3">$160</p>
+      <div className="flex flex-col gap-1 font-semibold">
+        <Link to="/" className="text-base uppercase">
+          {title}
+        </Link>
+        <div className="flex gap-2 text-base font-medium font-poppins">
+          <p className="text-base font-semibold text-colors-secondary-3">
+            ${price}
+          </p>
+          <p className="text-base font-semibold line-through text-colors-text-3">
+            ${price}
+          </p>
         </div>
-        <div className="flex gap-2 items-center">
-          <div className="flex gap-1 items-center">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <StarIcon />
             <StarIcon />
             <StarIcon />
             <StarIcon />
             <StarIcon />
           </div>
-          <p className="font-semibold text-base">(88)</p>
+          <p className="text-base font-semibold">({rating?.count})</p>
         </div>
         {colorVariants && (
-          <div className="flex gap-2 items-center">
-            <button className="size-6 border-2 rounded-full border-colors-text-3 flex items-center justify-center">
-              <span className="bg-colors-green-2 rounded-full size-4"></span>
+          <div className="flex items-center gap-2">
+            <button className="flex items-center justify-center border-2 rounded-full size-6 border-colors-text-3">
+              <span className="rounded-full bg-colors-green-2 size-4"></span>
             </button>
-            <button className="size-6 border-2 rounded-full border-colors-text-3 flex items-center justify-center">
-              <span className="bg-colors-secondary-3 rounded-full size-4 "></span>
+            <button className="flex items-center justify-center border-2 rounded-full size-6 border-colors-text-3">
+              <span className="rounded-full bg-colors-secondary-3 size-4 "></span>
             </button>
           </div>
         )}

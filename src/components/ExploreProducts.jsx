@@ -42,7 +42,7 @@ const ExploreProducts = () => {
           size="lg"
           color="red"
           children="view all products"
-          className="row-start-3 row-span-1 col-span-full justify-self-center self-center"
+          className="self-center row-span-1 row-start-3 col-span-full justify-self-center"
         />
       </GridLayout>
     </section>
