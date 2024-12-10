@@ -16,10 +16,9 @@ const PRODUCT_PATHS = [
 ];
 const ProductDetail = () => {
   const { productid } = useParams();
-  const { data: singleProduct } = useProductQueriesById(
-    productid.replace(":", "")
-  );
-  console.log("single prod:", productid, singleProduct);
+  const renamedProductid = productid.replace(":", "");
+  const { data: singleProduct = {} } = useProductQueriesById(renamedProductid);
+  console.log("single prod:", renamedProductid, singleProduct);
   const { image, title, price, rating, description } = singleProduct;
   return (
     <section className="flex flex-col items-start py-20">
