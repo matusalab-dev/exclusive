@@ -19,7 +19,7 @@ const GridItem = (product) => {
     styleButton,
     colorVariants,
   } = product;
-  console.log("rating", rating);
+  // console.log("rating", rating);
 
   // const { RatingStar, rate, count } = RatingStars(rating);
   // console.log("rating grid", <RatingStar />);

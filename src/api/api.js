@@ -70,4 +70,21 @@ async function getCarts() {
   }
 }
 
+// users end points
+async function getSingleUser(userId) {
+  const USER_URL = `${baseUrl}/carts/${userId}`;
+
+  try {
+    const response = await fetch(USER_URL);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    const json = await response.json();
+    console.log("cart json:", json);
+    return json;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 export { getProducts, getProductById, getAllCategories, getCarts };

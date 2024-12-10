@@ -36,9 +36,9 @@ const ProductDetail = () => {
         className="flex flex-col justify-between gap-12 py-6 sm:flex-row rounded-xl "
       >
         {/* product-imgs */}
-        <div className="flex items-start justify-between gap-3 max-h-min">
-          <div className="flex flex-col items-start justify-between gap-5">
-            <div className="flex items-start justify-center p-2 bg-colors-secondary-1">
+        <div className="flex items-start justify-between gap-3 max-h-96">
+          <div className="flex flex-col items-stretch justify-between gap-5">
+            <div className="flex items-center justify-center p-2 bg-colors-secondary-1">
               <img src={image} alt={image} width="100px" height="70px" />
             </div>
             <div className="flex items-center justify-center p-2 bg-colors-secondary-1">
@@ -52,7 +52,7 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          <div className="flex items-center p-6 bg-colors-secondary-1">
+          <div className="flex items-center p-6 bg-colors-secondary-1 min-h-96">
             <img src={image} alt={image} width="446px" height="315px" />
           </div>
         </div>
