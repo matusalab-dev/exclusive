@@ -15,7 +15,6 @@ export const SECONDARY_HOVEROVER_LINKS = [
 ];
 const ButtonHoverOver = ({ icon, label, links, className, styleButton }) => {
   const pathname = useSearchParams();
-  console.log("pathname", pathname);
 
   return (
     <button

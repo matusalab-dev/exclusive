@@ -15,7 +15,7 @@ const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Sign Up", href: "/signup" },
 ];
-const NavBar = ({ authorized = false }) => {
+const NavBar = ({ authorized = true }) => {
   const { pathname } = useLocation();
   return (
     <nav className="mt-8 text-colors-text-3 flex justify-between after:border-b after:top-[20%] after:content-[''] after:h-4 after:block  after:absolute after:left-0 after:right-0">
@@ -44,7 +44,7 @@ const NavBar = ({ authorized = false }) => {
         <Link to="wishlist">
           <HeartIcon />
         </Link>
-        <Link to="/account/cart" className="relative">
+        <Link to="account/cart" className="relative">
           <CartIcon />
           <p className="absolute bottom-[60%] left-[70%] bg-colors-secondary-3 text-colors-primary-1 size-6 rounded-full flex items-center justify-center">
             2

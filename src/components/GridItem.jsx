@@ -4,6 +4,8 @@ import HeartIcon from "../assets/icons/heart-icon";
 import StarIcon from "../assets/icons/StarIcon";
 import { cn } from "../utils/utils";
 import Button from "./Button";
+// import RatingStars from "./RatingStars";
+import { Rating } from "react-simple-star-rating";
 const GridItem = (product) => {
   const {
     badge = "-40%",
@@ -11,14 +13,15 @@ const GridItem = (product) => {
     image,
     title,
     price,
-    rating,
+    rating = {},
     className,
     styleButton,
     colorVariants,
   } = product;
-  // const { rate, count } = rating;
-  // console.log("rate: " + rate + " count: " + count);
-  console.log("rate: " + rating?.rate);
+  console.log("rating", rating);
+
+  // const { RatingStar, rate, count } = RatingStars(rating);
+  // console.log("rating grid", <RatingStar />);
 
   return (
     <div className="space-y-4">
@@ -67,7 +70,7 @@ const GridItem = (product) => {
         />
       </div>
       <div className="flex flex-col gap-1 font-semibold">
-        <Link to="/" className="text-base uppercase">
+        <Link to={`product/:${id}`} className="text-base uppercase">
           {title}
         </Link>
         <div className="flex gap-2 text-base font-medium font-poppins">
@@ -80,12 +83,26 @@ const GridItem = (product) => {
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1">
+            {/* <StarIcon />
             <StarIcon />
             <StarIcon />
             <StarIcon />
-            <StarIcon />
-            <StarIcon />
+            <StarIcon /> */}
+            {/* {<RatingStars rating={rating} />} */}
+            {
+              <Rating
+                initialValue={0}
+                iconsCount={5}
+                readonly
+                rtl
+                fillIcon={<StarIcon />}
+                fillColor="#FFAD33"
+                size={20}
+                allowFraction
+              />
+            }
           </div>
+
           <p className="text-base font-semibold">({rating?.count})</p>
         </div>
         {colorVariants && (

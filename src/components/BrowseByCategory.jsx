@@ -1,42 +1,37 @@
-import React from "react";
 import HeadingLabel from "./HeadingLabel";
 import SectionHeader from "./SectionHeader";
 import GridLayout from "../layouts/GridLayout";
 import ComputerIcon from "../assets/icons/computer-icon";
 import SlideNavButton from "./SlideNavButton";
-const BrowseByCategory = () => {
+
+const BrowseByCategory = ({
+  categories,
+  setActiveCategory,
+  activeCategory,
+}) => {
   return (
-    <section className="border-b-colors-secondary-2 border-b-2 pb-12">
+    <section className="pb-12 border-b-2 border-b-colors-secondary-2">
       <HeadingLabel Children="categories" />
       <SectionHeader
         HeadingLabel="browse by category"
         buttons={<SlideNavButton />}
       />
       <GridLayout className="gap-3">
-        <button className=" rounded-sm flex flex-col items-center w-56 h-44 justify-center px-6 py-8 border-colors-text-3/30 border">
-          <ComputerIcon />
-          <p className="font-poppins text-sm capitalize ">phone</p>
-        </button>
-        <button className=" rounded-sm flex flex-col items-center w-56 h-44 justify-center px-6 py-8 border-colors-text-3/30 border">
-          <ComputerIcon />
-          <p className="font-poppins text-sm capitalize">Computers & Laptop</p>
-        </button>
-        <button className=" rounded-sm flex flex-col items-center w-56 h-44 justify-center px-6 py-8 border-colors-text-3/30 border">
-          <ComputerIcon />
-          <p className="font-poppins text-sm capitalize">Computers & Laptop</p>
-        </button>
-        <button className=" rounded-sm flex flex-col items-center w-56 h-44 justify-center px-6 py-8 border-colors-text-3/30 border">
-          <ComputerIcon />
-          <p className="font-poppins text-sm capitalize">Computers & Laptop</p>
-        </button>
-        <button className=" rounded-sm flex flex-col items-center w-56 h-44 justify-center px-6 py-8 border-colors-text-3/30 border">
-          <ComputerIcon />
-          <p className="font-poppins text-sm capitalize">Computers & Laptop</p>
-        </button>
-        <button className=" rounded-sm flex flex-col items-center w-56 h-44 justify-center px-6 py-8 border-colors-text-3/30 border">
-          <ComputerIcon />
-          <p className="font-poppins text-sm capitalize">Computers & Laptop</p>
-        </button>
+        {categories?.map((category) => {
+          const isActive = activeCategory === category;
+          return (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`flex flex-col items-center justify-center w-56 px-6 py-8 border rounded-sm h-44 border-colors-text-3/30 ${
+                isActive && "bg-colors-secondary-3 text-colors-primary-1"
+              }`}
+            >
+              <ComputerIcon strokeColor={isActive ? "white" : "black"} />
+              <p className="text-sm capitalize font-poppins">{category}</p>
+            </button>
+          );
+        })}
       </GridLayout>
     </section>
   );

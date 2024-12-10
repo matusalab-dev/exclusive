@@ -1,8 +1,14 @@
-const baseUrl = "https://fakestoreapi.com/products";
+const baseUrl = "https://fakestoreapi.com";
 
-export async function getProducts() {
+// fetch("https://fakestoreapi.com/products")
+//   .then((res) => res.json())
+//   .then((json) => console.log(json));
+
+async function getProducts() {
+  const PRODUCT_URL = `${baseUrl}/products`;
+
   try {
-    const response = await fetch(baseUrl);
+    const response = await fetch(PRODUCT_URL);
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
@@ -14,14 +20,11 @@ export async function getProducts() {
   }
 }
 
-// fetch("https://fakestoreapi.com/products")
-//   .then((res) => res.json())
-//   .then((json) => console.log(json));
-
 // get product by id
-export async function getProductById(id) {
+async function getProductById(id) {
+  const PRODUCT_URL = `${baseUrl}/products/${id}`;
   try {
-    const response = await fetch(`${baseUrl}/products/${id}`);
+    const response = await fetch(PRODUCT_URL);
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
@@ -33,3 +36,23 @@ export async function getProductById(id) {
     console.error(error.message);
   }
 }
+async function getAllCategories() {
+  const CATEGORY_URL = `https://fakestoreapi.com/products/categories`;
+  try {
+    const response = await fetch(CATEGORY_URL);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const json = await response.json();
+    console.log("category json:", json);
+    return json;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+// fetch("https://fakestoreapi.com/products/categories")
+//   .then((res) => res.json())
+//   .then((json) => console.log(json));
+export { getProducts, getProductById, getAllCategories };

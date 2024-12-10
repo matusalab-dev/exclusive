@@ -14,10 +14,18 @@ const colors = {
   green: "bg-colors-green-1 text-colors-primary-1",
 };
 
-function Button({ as = "button", to = "/", color, size, children, className }) {
+function Button({
+  as = "button",
+  to = "/",
+  color,
+  type,
+  size,
+  children,
+  className,
+}) {
   let colorVariants = colors[color];
   let sizeVariants = sizes[size];
-  console.log(colorVariants);
+
   if (as === "Link" && to) {
     return (
       <Link
@@ -37,6 +45,7 @@ function Button({ as = "button", to = "/", color, size, children, className }) {
         "",
         className
       )} `}
+      type={type}
     >
       {children}
     </button>
