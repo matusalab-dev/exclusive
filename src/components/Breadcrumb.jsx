@@ -11,7 +11,9 @@ const Breadcrumb = ({ links }) => {
               key={link.href}
               class="flex cursor-pointer items-center text-sm text-slate-500 transition-colors duration-300 hover:text-slate-800"
             >
-              <Link to={link.href}>{link.label}</Link>
+              <Link to={link.href} className="capitalize">
+                {link.label}
+              </Link>
               <span class="pointer-events-none mx-2 text-slate-800">/</span>
             </li>
           );

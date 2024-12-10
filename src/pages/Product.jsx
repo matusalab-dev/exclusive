@@ -1,7 +1,10 @@
 import { Link, useParams } from "react-router";
 import Breadcrumb from "../components/Breadcrumb";
 import FilledStarIcon from "../assets/icons/StarIcon";
-import { useProductQueriesById } from "../api/queries/product-queries";
+import {
+  useProductQueries,
+  useProductQueriesById,
+} from "../api/queries/product-queries";
 import JoyStickWhite from "../assets/joy-stick-white.png";
 import HeartIcon from "../assets/icons/heart-icon";
 import DeliveryImage from "../assets/delivery-info.png";
@@ -9,6 +12,7 @@ import HalfStarIcon from "../assets/icons/half-star-icon";
 import Button from "../components/Button";
 import HeadingLabel from "../components/HeadingLabel";
 import GridLayout from "../layouts/GridLayout";
+import GridItem from "../components/GridItem";
 const PRODUCT_PATHS = [
   { href: "a", label: "Account" },
   { href: "Gaming", label: "Gaming" },
@@ -20,6 +24,8 @@ const ProductDetail = () => {
   const { data: singleProduct = {} } = useProductQueriesById(renamedProductid);
   console.log("single prod:", renamedProductid, singleProduct);
   const { image, title, price, rating, description } = singleProduct;
+  const { data: products = [] } = useProductQueries();
+
   return (
     <section className="flex flex-col items-start py-20">
       <Breadcrumb links={PRODUCT_PATHS} />
@@ -30,19 +36,19 @@ const ProductDetail = () => {
         className="flex flex-col justify-between gap-12 py-6 sm:flex-row rounded-xl "
       >
         {/* product-imgs */}
-        <div className="flex items-stretch gap-3">
+        <div className="flex items-start justify-between gap-3 max-h-min">
           <div className="flex flex-col items-start justify-between gap-5">
-            <div className="flex items-center justify-center p-2 bg-colors-secondary-1">
-              <img src={image} alt={image} width="130px" height="120px" />
+            <div className="flex items-start justify-center p-2 bg-colors-secondary-1">
+              <img src={image} alt={image} width="100px" height="70px" />
             </div>
             <div className="flex items-center justify-center p-2 bg-colors-secondary-1">
-              <img src={image} alt={image} width="130px" height="120px" />
+              <img src={image} alt={image} width="100px" height="70px" />
             </div>
             <div className="flex items-center justify-center p-2 bg-colors-secondary-1">
-              <img src={image} alt={image} width="130px" height="120px" />
+              <img src={image} alt={image} width="100px" height="70px" />
             </div>
             <div className="flex items-center justify-center p-2 bg-colors-secondary-1">
-              <img src={image} alt={image} width="130px" height="120px" />
+              <img src={image} alt={image} width="100px" height="70px" />
             </div>
           </div>
 
@@ -51,7 +57,7 @@ const ProductDetail = () => {
           </div>
         </div>
         {/* product-description */}
-        <div className="flex flex-col justify-start flex-1 gap-4">
+        <div className="flex flex-col items-stretch justify-between gap-4">
           <div className="flex flex-col items-start justify-between ">
             <div className="border-b-[1.95px] pb-3 border-b-grey-200 flex flex-col gap-3">
               <h2 className="mb-2 text-2xl font-semibold capitalize text-colors-text-3">
@@ -71,7 +77,7 @@ const ProductDetail = () => {
               <h3 className="text-2xl">${price}</h3>
               <p className="font-poppins max-w-[45ch]">{description}</p>
             </div>
-            <div className="flex flex-col gap-4 mt-3">
+            <div className="flex flex-col items-stretch gap-4 mt-3">
               <div className="flex items-center gap-2">
                 <p className="text-xl capitalize">colors:</p>
                 <div className="flex gap-1">
@@ -106,7 +112,7 @@ const ProductDetail = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center justify-between w-full gap-6">
                 <div className="flex items-center gap-3 border rounded-md border-light_black">
                   <button
                     // onClick={() => handleDec()}
@@ -124,7 +130,7 @@ const ProductDetail = () => {
                 </div>
                 <Button
                   size="md"
-                  className="px-10 rounded-sm"
+                  className="rounded-sm "
                   children="Buy Now"
                   color="red"
                 />
@@ -140,7 +146,11 @@ const ProductDetail = () => {
 
       <div className="mt-20">
         <HeadingLabel Children="Related Item" />
-        <GridLayout></GridLayout>
+        <GridLayout>
+          {products?.map((product) => (
+            <GridItem key={product.id} badge="" {...product} />
+          ))}
+        </GridLayout>
       </div>
     </section>
   );

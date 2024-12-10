@@ -1,6 +1,6 @@
 import { cn } from "../../utils/utils";
 
-const Input = ({ type = "text", id, placeholder, className }) => {
+const Input = ({ type = "text", id, placeholder, className, value }) => {
   return (
     <input
       type={type}
@@ -12,6 +12,7 @@ const Input = ({ type = "text", id, placeholder, className }) => {
         className
       )}`}
       required
+      value={value}
     />
   );
 };

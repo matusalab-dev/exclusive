@@ -6,6 +6,7 @@ import { cn } from "../utils/utils";
 import Button from "./Button";
 // import RatingStars from "./RatingStars";
 import { Rating } from "react-simple-star-rating";
+import FilledStarIcon from "../assets/icons/StarIcon";
 const GridItem = (product) => {
   const {
     badge = "-40%",
@@ -74,36 +75,41 @@ const GridItem = (product) => {
           {title}
         </Link>
         <div className="flex gap-2 text-base font-medium font-poppins">
-          <p className="text-base font-semibold text-colors-secondary-3">
+          <p className="text-base font-medium text-colors-secondary-3">
             ${price}
           </p>
-          <p className="text-base font-semibold line-through text-colors-text-3">
+          <p className="text-base font-medium line-through text-colors-text-3">
             ${price}
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1">
-            {/* <StarIcon />
+          {/* <div className="flex items-center gap-1"> */}
+          {/* <StarIcon />
             <StarIcon />
             <StarIcon />
             <StarIcon />
             <StarIcon /> */}
-            {/* {<RatingStars rating={rating} />} */}
-            {
-              <Rating
-                initialValue={0}
-                iconsCount={5}
-                readonly
-                rtl
-                fillIcon={<StarIcon />}
-                fillColor="#FFAD33"
-                size={20}
-                allowFraction
-              />
-            }
-          </div>
+          {/* {<RatingStars rating={rating} />} */}
+          {
+            <Rating
+              initialValue={0}
+              iconsCount={5}
+              readonly
+              rtl
+              // fillIcon={<FilledStarIcon />}
+              fillColor="#FFAD33"
+              size={20}
+              allowFraction
+              className="!flex !flex-row"
+              style={{
+                display: "flex !important ",
+                flexDirection: "row !important ",
+              }}
+            />
+          }
+          {/* </div> */}
 
-          <p className="text-base font-semibold">({rating?.count})</p>
+          <p className="text-base font-medium">({rating?.count})</p>
         </div>
         {colorVariants && (
           <div className="flex items-center gap-2">

@@ -44,7 +44,7 @@ const NavBar = ({ authorized = true }) => {
         <Link to="wishlist">
           <HeartIcon />
         </Link>
-        <Link to="account/cart" className="relative">
+        <Link to="cart" className="relative">
           <CartIcon />
           <p className="absolute bottom-[60%] left-[70%] bg-colors-secondary-3 text-colors-primary-1 size-6 rounded-full flex items-center justify-center">
             2

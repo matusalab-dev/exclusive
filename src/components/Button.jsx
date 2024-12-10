@@ -3,8 +3,9 @@ import { cn } from "../utils/utils";
 import { Link } from "react-router";
 
 const sizes = {
+  base: "px-4 py-4 rounded-b-sm text-base",
   md: "px-4 py-2 rounded-b-sm text-base",
-  lg: "px-7 py-3 text-lg rounded-md",
+  lg: "px-7 py-2 text-lg rounded-md",
   xl: "px-7 py-3 text-lg rounded-b-md rounded-t-none",
 };
 

@@ -4,6 +4,7 @@ const baseUrl = "https://fakestoreapi.com";
 //   .then((res) => res.json())
 //   .then((json) => console.log(json));
 
+// products end points
 async function getProducts() {
   const PRODUCT_URL = `${baseUrl}/products`;
 
@@ -13,7 +14,7 @@ async function getProducts() {
       throw new Error(`Response status: ${response.status}`);
     }
     const json = await response.json();
-    console.log("json:", json);
+    // console.log("json:", json);
     return json;
   } catch (error) {
     console.error(error.message);
@@ -30,7 +31,7 @@ async function getProductById(id) {
     }
 
     const json = await response.json();
-    console.log("single json:", json);
+    // console.log("single json:", json);
     return json;
   } catch (error) {
     console.error(error.message);
@@ -45,14 +46,28 @@ async function getAllCategories() {
     }
 
     const json = await response.json();
-    console.log("category json:", json);
+    // console.log("category json:", json);
     return json;
   } catch (error) {
     console.error(error.message);
   }
 }
 
-// fetch("https://fakestoreapi.com/products/categories")
-//   .then((res) => res.json())
-//   .then((json) => console.log(json));
-export { getProducts, getProductById, getAllCategories };
+// carts end-points
+async function getCarts() {
+  const CART_URL = `${baseUrl}/carts`;
+
+  try {
+    const response = await fetch(CART_URL);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    const json = await response.json();
+    console.log("cart json:", json);
+    return json;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+export { getProducts, getProductById, getAllCategories, getCarts };
