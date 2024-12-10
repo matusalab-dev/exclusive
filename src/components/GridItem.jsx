@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import EyeIcon from "../assets/icons/eye-icon";
 import HeartIcon from "../assets/icons/heart-icon";
 import StarIcon from "../assets/icons/StarIcon";
@@ -23,6 +23,8 @@ const GridItem = (product) => {
 
   // const { RatingStar, rate, count } = RatingStars(rating);
   // console.log("rating grid", <RatingStar />);
+  const { pathname } = useLocation();
+  const newPath = pathname.replace(pathname, `/product:${id}`);
 
   return (
     <div className="space-y-4">
@@ -71,7 +73,14 @@ const GridItem = (product) => {
         />
       </div>
       <div className="flex flex-col gap-1 font-semibold">
-        <Link to={`product/:${id}`} className="text-base uppercase">
+        <Link
+          to={`${
+            pathname.includes(`/product/${id}`)
+              ? `${newPath}`
+              : `/product/${id}`
+          }`}
+          className="text-base uppercase"
+        >
           {title}
         </Link>
         <div className="flex gap-2 text-base font-medium font-poppins">
