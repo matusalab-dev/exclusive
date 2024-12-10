@@ -129,8 +129,7 @@ const ProductDetail = () => {
                   </button>
                 </div>
                 <Button
-                  size="md"
-                  className="rounded-sm "
+                  className="px-8 py-2 rounded-sm"
                   children="Buy Now"
                   color="red"
                 />

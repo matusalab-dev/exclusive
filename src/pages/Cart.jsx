@@ -1,4 +1,5 @@
 import { useCartQueries } from "../api/queries/cart-queries";
+import { useProductQueriesById } from "../api/queries/product-queries";
 import Breadcrumb from "../components/Breadcrumb";
 import Button from "../components/Button";
 import CartItem from "../components/CartItem";
@@ -13,6 +14,15 @@ const Cart = () => {
   const { data: cartItems = [] } = useCartQueries();
   const cartItem = cartItems[0];
   const cartProducts = cartItem?.products;
+  // const cartProductId = cartItem?.id;
+  console.log("carts", cartProducts);
+  const productsInCart = cartProducts?.map((cartProduct) =>
+    useProductQueriesById(cartProduct.productId)
+  );
+  console.log("Items in cart", productsInCart);
+  const { data: itemsCart } = productsInCart;
+  const productsAdded = productsInCart?.map((product) => product?.data);
+  console.log("productsAdded", productsAdded);
 
   return (
     <section className="py-20">
@@ -24,7 +34,7 @@ const Cart = () => {
         <p>subtotal</p>
       </div>
       <div className="flex flex-col justify-center gap-3 mt-8">
-        {cartProducts.map((item) => (
+        {productsAdded?.map((item) => (
           <CartItem key={item.id} {...item} />
         ))}
         <div className="flex justify-between mt-8">
