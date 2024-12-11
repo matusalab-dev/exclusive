@@ -22,9 +22,9 @@ const Home = () => {
   const filteredProducts = products?.filter(
     (product) => product.category == activeCategory
   );
-  console.log("available products", products);
-  console.log("filterByCategory", filteredProducts);
-  console.log("filteredprodcts length", filteredProducts.length);
+  // console.log("available products", products);
+  // console.log("filterByCategory", filteredProducts);
+  // console.log("filteredprodcts length", filteredProducts.length);
 
   return (
     <div className="space-y-14">

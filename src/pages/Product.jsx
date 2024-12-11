@@ -143,7 +143,7 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      <div className="mt-20">
+      <div className="mt-32">
         <HeadingLabel Children="Related Item" />
         <GridLayout>
           {products?.map((product) => (

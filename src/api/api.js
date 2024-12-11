@@ -54,8 +54,8 @@ async function getAllCategories() {
 }
 
 // carts end-points
-async function getCarts() {
-  const CART_URL = `${baseUrl}/carts`;
+async function getCartsAddedByUser(userId) {
+  const CART_URL = `${baseUrl}/carts/user/${userId}`;
 
   try {
     const response = await fetch(CART_URL);
@@ -87,4 +87,4 @@ async function getSingleUser(userId) {
   }
 }
 
-export { getProducts, getProductById, getAllCategories, getCarts };
+export { getProducts, getProductById, getAllCategories, getCartsAddedByUser };
