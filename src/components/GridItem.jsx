@@ -7,7 +7,14 @@ import Button from "./Button";
 // import RatingStars from "./RatingStars";
 import { Rating } from "react-simple-star-rating";
 import FilledStarIcon from "../assets/icons/StarIcon";
+import { useContext } from "react";
+import { CartContext } from "../contexts/cart-context";
 const GridItem = (product) => {
+  const { handleAddToCart, cartItems, qty, productInfo } =
+    useContext(CartContext);
+  console.log("product info context", productInfo);
+
+  console.log("product info", cartItems);
   const {
     badge = "-40%",
     id,
@@ -63,6 +70,7 @@ const GridItem = (product) => {
           </div>
         </div>
         <Button
+          onClick={() => handleAddToCart(product, qty)}
           color="black"
           size="xl"
           children="add to cart"

@@ -13,6 +13,8 @@ import Button from "../components/Button";
 import HeadingLabel from "../components/HeadingLabel";
 import GridLayout from "../layouts/GridLayout";
 import GridItem from "../components/GridItem";
+import { useContext } from "react";
+import { CartContext } from "../contexts/cart-context";
 const PRODUCT_PATHS = [
   { href: "a", label: "Account" },
   { href: "Gaming", label: "Gaming" },
@@ -22,10 +24,9 @@ const ProductDetail = () => {
   const { productid } = useParams();
   const renamedProductid = productid.replace(":", "");
   const { data: singleProduct = {} } = useProductQueriesById(renamedProductid);
-  console.log("single prod:", renamedProductid, singleProduct);
   const { image, title, price, rating, description } = singleProduct;
   const { data: products = [] } = useProductQueries();
-
+  const { qty } = useContext(CartContext);
   return (
     <section className="flex flex-col items-start py-20">
       <Breadcrumb links={PRODUCT_PATHS} />
@@ -120,7 +121,7 @@ const ProductDetail = () => {
                   >
                     -
                   </button>
-                  <p className="px-4 font-medium">5</p>
+                  <p className="px-4 font-medium">{qty}</p>
                   <button
                     // onClick={() => handleInc()}
                     className="self-center px-3 py-1 text-xl border-l rounded-tr-md rounded-br-md bg-colors-secondary-3 text-colors-primary-1 border-l-light_black"
@@ -143,7 +144,7 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      <div className="mt-32">
+      <div className="mt-56">
         <HeadingLabel Children="Related Item" />
         <GridLayout>
           {products?.map((product) => (

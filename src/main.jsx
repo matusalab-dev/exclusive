@@ -16,14 +16,15 @@ import Cart from "./pages/Cart.jsx";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import ProductDetail from "./pages/Product.jsx";
 import CartProvider from "./contexts/cart-context.jsx";
+import Wishlist from "./pages/Wishlist.jsx";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <CartProvider>
           <Routes>
             <Route path="/" element={<App />}>
               <Route index element={<Home />} />
@@ -34,6 +35,7 @@ createRoot(document.getElementById("root")).render(
 
               <Route path="product/:productid" element={<ProductDetail />} />
               <Route path="cart" element={<Cart />} />
+              <Route path="wishlist" element={<Wishlist />} />
               {/* <Route path="product" element={<Product />} /> */}
               <Route path="checkout" element={<Checkout />} />
               <Route path="account" element={<Account />} />
@@ -43,8 +45,8 @@ createRoot(document.getElementById("root")).render(
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
-        </BrowserRouter>
-      </CartProvider>
+        </CartProvider>
+      </BrowserRouter>
     </QueryClientProvider>
   </StrictMode>
 );

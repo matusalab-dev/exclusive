@@ -6,20 +6,21 @@ export const CartContext = createContext([]);
 
 export default function CartProvider({ children }) {
   const { data: products = [] } = useProductQueries();
+  console.log("CartProvider", products);
 
   // products state
   const [productInfo, setProductInfo] = useState(products);
   const [cartStatus, setCartStatus] = useState("");
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(3);
   const [cartItems, setCartItems] = useState([]);
   const [totalQty, setTotalQty] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  console.log("cart-items", cartItems);
-
   /* a function get called after clicking `addtocart` button which accept two arguments,
      the product instance we want to add to the cart `productToAdd` and the quantity of the product `quantity`*/
   function handleAddToCart(productToAdd, quantity) {
+    console.log("Adding to cart get clicked");
+
     // check if the product exist in the cart
     const doesExist = cartItems.find(
       (cartItem) => cartItem.id === productToAdd.id
@@ -172,6 +173,6 @@ export default function CartProvider({ children }) {
   );
 }
 
-const useCartContext = () => useContext(CartContext);
+// const useCartContext = () => useContext(CartContext);
 
-export { CartProvider, useCartContext };
+// export { CartProvider, CartContext };
