@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../api/api";
 
 const FlashSale = () => {
-  const { data: availableProducts = [] } = useQuery({
+  const { data: availableProducts = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
   });
@@ -19,6 +19,11 @@ const FlashSale = () => {
       <div className="flex flex-col">
         <CountDown className="justify-between" />
         <GridLayout>
+          {isLoading && (
+            <p className="text-2xl font-medium text-center capitalize  font-poppins justify-self-center text-colors-text-3">
+              loading...
+            </p>
+          )}
           {availableProducts?.map((product) => (
             <GridItem key={product.id} badge="" {...product} />
           ))}

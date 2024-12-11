@@ -13,7 +13,7 @@ const CART_PATHS = [
 
 const Cart = () => {
   const USER_ID = 1;
-  const { data: cartItemsAddedByUser = [] } = useUserCarts(USER_ID);
+  const { data: cartItemsAddedByUser = [], isLoading } = useUserCarts(USER_ID);
 
   const cartItems = cartItemsAddedByUser?.map(
     (cartProduct) => cartProduct?.products
@@ -42,11 +42,17 @@ const Cart = () => {
         <p>subtotal</p>
       </div>
       <div className="flex flex-col justify-center gap-3 mt-8">
+        {/* {isLoading && (
+          <p className="text-2xl font-medium text-center capitalize font-inter text-colors-text-3">
+            loading...
+          </p>
+        )} */}
         {products?.map((items, index) => {
           return <CartItem key={index} {...items} />;
         })}
         <div className="flex justify-between mt-8">
           <Button
+            as="Link"
             children="Return To Shop"
             size="lg"
             className="border-2 border-colors-text-3"
