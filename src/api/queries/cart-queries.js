@@ -11,7 +11,8 @@ const CART_QUERY_KEY = "cart";
 
 export const useUserCarts = (userid) => {
   return useQuery({
-    queryKey: [CART_QUERY_KEY],
+    queryKey: [CART_QUERY_KEY, userid],
     queryFn: () => getCartsAddedByUser(userid),
+    select: (CART_QUERY_KEY) => CART_QUERY_KEY.map((cart) => cart.products),
   });
 };

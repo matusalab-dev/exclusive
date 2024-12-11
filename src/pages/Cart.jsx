@@ -1,3 +1,4 @@
+import { useQueries } from "@tanstack/react-query";
 import { useUserCarts } from "../api/queries/cart-queries";
 import { useProductQueriesById } from "../api/queries/product-queries";
 // import { useProductQueriesById } from "../api/queries/product-queries";
@@ -5,6 +6,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import Button from "../components/Button";
 import CartItem from "../components/CartItem";
 import Input from "../components/form/Input";
+import { getProductById } from "../api/api";
 
 const CART_PATHS = [
   { href: "home", label: "Home" },
@@ -13,24 +15,39 @@ const CART_PATHS = [
 
 const Cart = () => {
   const USER_ID = 1;
-  const { data: cartItemsAddedByUser = [], isLoading } = useUserCarts(USER_ID);
+  const { data: userCarts = [], isLoading } = useUserCarts(USER_ID);
+  // console.log("cart-items", userCarts);
 
-  const cartItems = cartItemsAddedByUser?.map(
-    (cartProduct) => cartProduct?.products
-  );
-  // console.log("cartItems", cartItems);
+  const flattenArray = userCarts.flat();
+  // console.log("flatten", flattenArray);
+  // dependent queries
+  // Then get the user 1 cart items
+  const userCart = useQueries({
+    queries: flattenArray
+      ? flattenArray.map(({ productId }) => {
+          return {
+            queryKey: ["productItems", productId],
+            queryFn: () => getProductById(productId),
+          };
+        })
+      : [], // if users is undefined, an empty array will be returned
+  });
+  // console.log("user cart", userCart);
 
-  const flattenCartArray = cartItems?.flat();
+  const cartItems = userCart?.map((cartProduct) => cartProduct.data) || [];
+  console.log("cart---Items", cartItems);
 
-  // console.log("productsAdded", flattenCartArray);
-  const cartProducts = flattenCartArray?.map((product) =>
-    useProductQueriesById(product.productId)
-  );
-  console.log("cart productsAdded", cartProducts);
+  // const flattenCartArray = userCarts?.flat();
 
-  const products = cartProducts?.map((product) => product.data);
-  // const { data: productsAddedByUser } = productsAdded;
-  console.log("Items added", products);
+  // console.log("user carts", userCart);
+  // const cartProducts = flattenCartArray.map((product) =>
+  //   useProductQueriesById(product.productId)
+  // );
+  // console.log("cart productsAdded", cartProducts);
+
+  // const products = cartProducts.map((product) => product.data);
+  // // const { data: productsAddedByUser } = productsAdded;
+  // console.log("Items added", products);
 
   return (
     <section className="py-20">
@@ -47,7 +64,7 @@ const Cart = () => {
             loading...
           </p>
         )} */}
-        {products?.map((items, index) => {
+        {cartItems?.map((items, index) => {
           return <CartItem key={index} {...items} />;
         })}
         <div className="flex justify-between mt-8">
