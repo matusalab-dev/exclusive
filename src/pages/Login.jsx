@@ -30,7 +30,7 @@ const Login = () => {
             className="border-b focus:outline-b-colors-text-3 bg-colors-primary-1 border-b-colors-text-2"
           />
           <div className="flex justify-between gap-3">
-            <Button size="lg" color="red" children="Log In" />
+            <Button as="Link" to="/" size="lg" color="red" children="Log In" />
             <Button
               as="Link"
               to="/password"
